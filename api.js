@@ -1,14 +1,6 @@
 // URL CSV dari Google Sheets temanmu
 const urlData = "https://docs.google.com/spreadsheets/d/1JY9rSflNl021ZUK9no6YgCEAMm4Fc8bRYr_lDza1GiQ/gviz/tq?tqx=out:csv";
 
-      let teksBersih = barisPesan[0].replace(/^"|"$/g, '');
-      
-      // Tambahkan baris ini:
-      console.log("TEKS DARI SHEETS ADALAH:", teksBersih); 
-      
-      param.textContent = teksBersih; 
-
-
 async function ambilTeks() {
   try {
     const respon = await fetch(urlData);
