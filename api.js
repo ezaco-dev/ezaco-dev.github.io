@@ -1,29 +1,32 @@
-const param = document.getElementById("param")
+// URL CSV dari Google Sheets temanmu
+const urlData = "https://docs.google.com/spreadsheets/d/1JY9rSflNl021ZUK9no6YgCEAMm4Fc8bRYr_lDza1GiQ/gviz/tq?tqx=out:csv";
 
-// Menggunakan async/await agar lebih rapi
 async function ambilTeks() {
   try {
-    const respon = await fetch("https://rentry.co/hpgcbrmt/raw", {
-      method: "GET",
-      headers: {
-        // Ganti 'KODE_AKSES_ANDA' dengan kode dari Rentry
-        "rentry-auth": "123" 
-      }
-    });
+    const respon = await fetch(urlData);
+    
+    if (!respon.ok) {
+      throw new Error("Gagal mengambil data dari Google Sheets");
+    }
 
-    // Mengubah hasil respon menjadi teks biasa
-    const teksTersimpan = await respon.text(); 
+    // Mengambil data sebagai teks
+    const teksCsv = await respon.text(); 
+    
+    // Memecah teks berdasarkan enter menjadi Array
+    const barisPesan = teksCsv.split('\n').filter(pesan => pesan.trim() !== "");
 
-    // Memasukkan teks tersebut ke dalam elemen HTML ber-id 'param'
     const param = document.getElementById("param");
-    if (param) {
-      param.textContent = teksTersimpan;
+    if (param && barisPesan.length > 0) {
+      // Mengambil baris pertama (index 0) dan membersihkan sisa tanda kutip bawaan CSV
+      let teksBersih = barisPesan[0].replace(/^"|"$/g, '');
+      
+      // Menampilkan ke HTML
+      param.textContent = teksBersih; 
     }
   } catch (error) {
-    console.error("Gagal mengambil data:", error);
+    console.error("Error:", error);
   }
 }
 
 // Jalankan fungsi setelah halaman selesai dimuat
 window.addEventListener("DOMContentLoaded", ambilTeks);
-
