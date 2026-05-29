@@ -1,12 +1,34 @@
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="style.css" type="text/css" media="all" />
-  <title>Untuk kamu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Kamu 🩷</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
 </head>
 <body>
-  <p id="param"></p>
-  
+
+  <div id="cover" onclick="mulaiWeb()">
+    <div class="cover-content">
+      <img src="/assets/pp.png" alt="Awan" class="cover-img">
+      <h2>Sentuh untuk Mulai 🩷</h2>
+    </div>
+  </div>
+
+  <div id="konten" class="hidden">
+    <div class="card">
+      <img id="gif-bucin" src="https://htmlku.com/0/panda/pusn2.gif" alt="Cute GIF">
+      
+      <h1 id="judul">Untuk Pacarku! 🫣💗</h1>
+      
+      <p id="param">Memuat pesan manis untukmu...</p>
+      
+      <button id="btn-lanjut" onclick="pesanSelanjutnya()">Buka Surat 🩷</button>
+    </div>
+  </div>
+
+  <audio id="bgm" src="/assets/Audio.mp3" loop></audio>
+
   <script src="api.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
